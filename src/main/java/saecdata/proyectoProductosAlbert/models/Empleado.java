@@ -1,15 +1,9 @@
 package saecdata.proyectoProductosAlbert.models;
 
-import java.util.List;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,7 +14,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Categorias {
+public class Empleado {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,8 +22,14 @@ public class Categorias {
 
     private String nombre;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "categorias", cascade = CascadeType.ALL)
-    private List<Productos> productos;
+    private String apellido;
 
+    private String puesto;
+
+    private String departamento;
+
+    private String usuario;
+    
+    private String contrasena;
+    
 }

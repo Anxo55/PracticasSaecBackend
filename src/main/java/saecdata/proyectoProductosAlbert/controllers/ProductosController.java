@@ -20,7 +20,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
-import saecdata.proyectoProductosAlbert.models.Productos;
+import saecdata.proyectoProductosAlbert.models.Productos;   
 import saecdata.proyectoProductosAlbert.services.ProductosService;
 
 @RestController
@@ -42,7 +42,7 @@ public class ProductosController {
     @Operation(summary = "Crear producto", description = "Creación de productos")
     public Productos crearProducto(@RequestBody Productos productos) {
         return productosService.crearProducto(productos);
-    }
+      }
 
     @DeleteMapping
     @Operation(summary = "Eliminar producto", description = "Eliminar un producto por su ID")

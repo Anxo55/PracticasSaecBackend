@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import lombok.extern.slf4j.Slf4j;
+import saecdata.proyectoProductosAlbert.models.Categorias;
 import saecdata.proyectoProductosAlbert.models.Productos;
+import saecdata.proyectoProductosAlbert.repositories.CategoriasRepository;
 import saecdata.proyectoProductosAlbert.repositories.ProductosRepository;
 
 @Service
@@ -16,6 +18,9 @@ public class ProductosService {
 
     @Autowired
     private ProductosRepository productosRepository;
+
+    @Autowired
+    private CategoriasRepository categoriasRepository;
 
     public List<Productos> mostrarProductos() {
         log.info("Metodo que devuelve todos los productos");
@@ -28,9 +33,14 @@ public class ProductosService {
     }
 
     public Productos crearProducto(Productos productos) {
-        log.info("Metodo para crear un producto");
+        if (productos.getCategorias()!=null && productos.getCategorias().getId()!=null) {
+          Categorias cat = categoriasRepository.findById(
+              productos.getCategorias().getId()
+            ).orElseThrow(() -> new RuntimeException("Categoría no existe"));
+          productos.setCategorias(cat);
+        }
         return productosRepository.save(productos);
-    }
+      }
 
     public void borrarProducto(Long id) {
         log.info("Metodo para borrar un producto pro su id");

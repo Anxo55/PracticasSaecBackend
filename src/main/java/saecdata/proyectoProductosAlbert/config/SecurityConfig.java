@@ -36,7 +36,7 @@ public class SecurityConfig {
         http.csrf().disable()
             .authorizeHttpRequests()
             .requestMatchers("/auth/login", "/auth/register").permitAll() // El login está abierto
-            .requestMatchers("/productos/**", "/categorias/**").hasAnyRole("USER", "ADMIN") // Solo los roles USER y ADMIN pueden acceder a productos
+            .requestMatchers("/productos/**", "/categorias/**", "/empleados/**").hasAnyRole("USER", "ADMIN") // Solo los roles USER y ADMIN pueden acceder a productos
             .anyRequest().authenticated() // Cualquier otra solicitud debe estar autenticada
             .and()
             .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS); // Sin sesiones, el JWT maneja la autenticación
